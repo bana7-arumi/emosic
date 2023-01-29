@@ -1,0 +1,13 @@
+version: "3"
+services:
+  rust-app:
+    build:
+      context: .
+      dockerfile: ./docker/rust-app/Dockerfile.dev
+    extra_hosts:
+      - "emosic:127.0.0.1:8080"
+    ports:
+      - "8080:8080"
+    tty: true
+    volumes:
+      - ./rust-app:/app
