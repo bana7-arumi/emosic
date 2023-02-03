@@ -28,7 +28,7 @@ emosicは感情と音楽を融合させたアプリケーションです
 
 全体の構成としてマイクロサービスアーキテクチャを採用しています。
 
-![microservice-architecture](/docs/img//microservice-architecture.jpg)
+![microservice-architecture](./docs/img//microservice-architecture.png)
 
 ### Git / Github
 
@@ -43,17 +43,19 @@ mainブランチは基本的に弄りません。リリースするときに初�
 
 ### frontend
 
-言語: [Typescript](https://www.typescriptlang.org/)
+言語: [Rust](https://www.rust-lang.org/ja)
 
-フレームワーク: [React](https://ja.reactjs.org/)
+フレームワーク: [Tera](https://ja.reactjs.org/)
 
 CSSフレームワーク: [TailwindCSS](https://tailwindcss.com/)
 
 フロントエンド実装ルール
 
-- コーディングは[TypeScriptスタイルガイド](https://typescript-jp.gitbook.io/deep-dive/styleguide)に沿ってください
+- viewにビジネスロジックを書かない(凄く簡単に換言すると、viewで計算式とか書かない)
+- styleタグは使わない
+- TailWindCSSに依存する
 
-### server side
+### serverside
 
 言語: [Rust](https://www.rust-lang.org/ja)
 
@@ -62,3 +64,30 @@ webフレームワーク: [Actix Web](https://actix.rs/)
 サーバーサイド実装ルール
 
 - コーディングは[Rust API ガイドライン(日本語訳)](https://sinkuu.github.io/api-guidelines/checklist.html)に沿ってください
+
+### backend(BFF)
+
+今回のBFF(backends for frontends)としての責務はデータ加工です。余分な情報を削ぎ落とします。
+
+以下の例(SNSでありそうなAPI?)を見てみます
+
+```json
+{
+  "name": "hoge",
+  "age": "20",
+  "like": {
+    "food": "sushi",
+    "sports": "soccer"
+  }
+}
+```
+
+
+これを例えばlike情報が欲しい時BFFでは以下のようにフォーマットしてあげます
+
+```json
+{
+  "food": "sushi",
+  "sports": "soccer"
+}
+```
