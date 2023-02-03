@@ -24,6 +24,20 @@ emosicは感情と音楽を融合させたアプリケーションです
 のそれぞれ満たすコーディングを1サイクルとし、これ2~3日のイテレーションで開発します。
 ※1,2,3,4は優先度を表しています。
 
+### Set up
+
+APIの1つとして感情分析APIを使います
+API: [emotional-analysis-api](https://github.com/Aruminium/emotional-analysis-api)
+
+```console
+$ ./setup.sh
+```
+
+1. git clone
+2. model install
+
+を行っています
+
 ### System architecture
 
 全体の構成としてマイクロサービスアーキテクチャを採用しています。
