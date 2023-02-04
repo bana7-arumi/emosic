@@ -13,6 +13,10 @@ emosicは感情と音楽を融合させたアプリケーションです
 
 ## Contibuting
 
+windowsユーザはWSL2を使用してください
+
+makeコマンドも使えるようにしてください
+
 本開発は俗にいうアジャイル開発で進めます。
 
 今回は
@@ -23,6 +27,12 @@ emosicは感情と音楽を融合させたアプリケーションです
 
 のそれぞれ満たすコーディングを1サイクルとし、これ2~3日のイテレーションで開発します。
 ※1,2,3,4は優先度を表しています。
+
+#### 全体ルール
+
+- issueとPRの内容はテンプレートに沿ってください
+- コミットの粒度は細かくしてください
+- 機能が未完成でも少しでも進んだらPRを!
 
 ### Set up
 
@@ -80,6 +90,13 @@ webフレームワーク: [Actix Web](https://actix.rs/)
 - コーディングは[Rust API ガイドライン(日本語訳)](https://sinkuu.github.io/api-guidelines/checklist.html)に沿ってください
 
 ### backend(BFF)
+言語: [Python](https://www.python.org/)
+
+webフレームワーク: [FastAPI](https://fastapi.tiangolo.com/)
+
+GraphQL Library: [Strawberry](https://strawberry.rocks/)
+
+[[GraphQL] strawberry and fastapi](https://strawberry.rocks/docs/integrations/fastapi)
 
 今回のBFF(backends for frontends)としての責務はデータ加工です。余分な情報を削ぎ落とします。
 
