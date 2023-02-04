@@ -1,6 +1,10 @@
+DEV_YML="docker-compose.dev.yml"
+
 up:
-	@docker compose -f docker-compose.dev.yml up -d
+	@docker compose -f $(DEV_YML) up -d
 down:
-	@docker compose -f docker-compose.dev.yml down
+	@docker compose -f $(DEV_YML) down
 build:
-	@docker compose -f docker-compose.dev.yml build
+	@docker compose -f $(DEV_YML) build
+it-rust-app:
+	@docker exec -it rust-app bash
