@@ -1,7 +1,7 @@
 FROM rust:1.67 as develop-stage
 WORKDIR /app
 COPY ./rust-app/ ./
-RUN cargo install cargo-watch
+RUN cargo install cargo-watch sccache
 
 FROM develop-stage as build-stage
 RUN cargo build --release

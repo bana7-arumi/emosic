@@ -1,4 +1,5 @@
 use actix_web::{error, get, web, App, Error, HttpResponse, HttpServer, Responder};
+use actix_web::web::Data;
 use tera::Tera;
 #[get("/")]
 async fn hello(templates: web::Data<Tera>) -> impl Responder {
@@ -19,7 +20,7 @@ async fn main() -> std::io::Result<()> {
     HttpServer::new(|| {
         let templates = Tera::new("templates/**/*").unwrap();
         App::new()
-            .data(templates)
+            .app_data(Data::new(templates))
             .service(hello)
             .route("/hey", web::get().to(manual_hello))
     })
