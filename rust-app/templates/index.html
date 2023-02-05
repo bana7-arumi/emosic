@@ -1,8 +1,59 @@
+<!DOCTYPE html>
 <html>
   <head>
-    <title>Hello World!</title>
+    <meta charset="UTF-8" />
+    <title>emosic</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
   </head>
   <body>
-    <h1>Hello World!</h1>
+    <section class="bg-sky-500/50 h-96 px-8">
+      <div class="grid">
+        <div class="grid-col-12 mx-auto max-w-md text-center h-48">
+          <h2 class="text-6xl font-bold tracking-tight text-white">emosic</h2>
+          <p class="text-2xl text-white font-bold tracking-tight opacity-70">
+            あなたの感情 音楽に変換します
+          </p>
+        </div>
+        <div class="grid-col-12 mx-auto max-w-md text-center h-12">
+          <h2 class="text-2xl font-bold tracking-tight text-white">
+            今のあなたの感情を教えてください
+          </h2>
+        </div>
+        <form>
+          <div class="grid-cols-12 text-center h-12">
+            <input
+              class="shadow appearance-none border rounded w-full py-2 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              id="text"
+              type="text"
+              autocomplete="off"
+              onchange="change()"
+            />
+          </div>
+          <div class="grid-cols-4 text-center">
+            <button
+              id="submit-button"
+              class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+              name="text"
+              value=""
+              type="submit"
+            >
+              音楽に変換する
+            </button>
+          </div>
+        </form>
+      </div>
+    </section>
+    <script>
+      function change() {
+        text = document.getElementById("text").value;
+        document.getElementById("submit-button").value = text;
+      }
+    </script>
   </body>
 </html>
