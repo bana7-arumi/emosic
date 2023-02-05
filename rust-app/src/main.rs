@@ -1,4 +1,4 @@
-use actix_web::{error, get, web, App, Error, HttpResponse, HttpServer, Responder};
+use actix_web::{get, web, App, HttpResponse, HttpServer, Responder};
 use actix_web::web::Data;
 use tera::Tera;
 #[get("/")]
