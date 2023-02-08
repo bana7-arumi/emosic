@@ -8,3 +8,5 @@ build:
 	@docker compose -f $(DEV_YML) build
 it-rust-app:
 	@docker exec -it rust-app bash
+it-bff:
+	@docker exec -it bff bash
