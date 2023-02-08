@@ -28,7 +28,8 @@ services:
       - rust-app
   bff:
     container_name: bff
-    build: 
+    build:
+      context: . 
       dockerfile: ./docker/bff/Dockerfile.dev
     tty: true
     volumes:
