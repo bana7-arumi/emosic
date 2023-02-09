@@ -2,6 +2,7 @@ use actix_web::web::Data;
 use actix_web::{get, post, web, App, HttpResponse, HttpServer, Responder};
 use reqwest;
 use serde::Deserialize;
+use std::collections::HashMap;
 use tera::Tera;
 #[derive(Deserialize)]
 struct Example {
@@ -29,9 +30,11 @@ async fn post_example(item: web::Json<Example>) -> impl Responder {
 
 async fn send_post_to_bff(body: &String) -> reqwest::Result<String> {
     let client = reqwest::Client::new();
+    let mut map = HashMap::new();
+    map.insert("text", &body);
     let responce = client
         .post("http://172.20.0.3:9000/post")
-        .body(format!("{{text: {}}}\n", body)) //ひどい実装ですみませんが動作確認なので許してほしいです
+        .json(&map) //ひどい実装ですみませんが動作確認なので許してほしいです
         .send()
         .await?;
     responce.text().await
