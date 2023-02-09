@@ -30,7 +30,7 @@ async fn post_example(item: web::Json<Example>) -> impl Responder {
 async fn send_post_to_bff(body: &String) -> reqwest::Result<String> {
     let client = reqwest::Client::new();
     let responce = client
-        .post("http://localhost:9000/graphql")
+        .post("http://172.20.0.3:9000/post")
         .body(format!("{{text: {}}}\n", body)) //ひどい実装ですみませんが動作確認なので許してほしいです
         .send()
         .await?;
