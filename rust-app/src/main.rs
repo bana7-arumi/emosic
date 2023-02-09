@@ -26,7 +26,7 @@ async fn post_example(item: web::Json<serde_json::Value>) -> impl Responder {
 async fn send_post_to_bff(json: serde_json::Value) -> reqwest::Result<String> {
     let client = reqwest::Client::new();
     let responce = client
-        .post("http://172.20.0.3:9000/post")
+        .post("http://bff:9000/post")
         .json(&json) //ひどい実装ですみませんが動作確認なので許してほしいです
         .send()
         .await?;
