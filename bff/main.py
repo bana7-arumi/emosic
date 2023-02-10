@@ -2,6 +2,8 @@ import strawberry
 from fastapi import FastAPI
 from strawberry.fastapi import GraphQLRouter
 from pydantic import BaseModel
+from api_handler.recommendation import Recommendation
+from api_handler.spotify_interface import dummy_APIcall
 
 
 @strawberry.type
@@ -27,3 +29,21 @@ app.include_router(graphql_app, prefix="/graphql")
 @app.post('/post')
 async def declare_request_body(item: Item):
     return {"test_message": f"text:{item.text},num:{item.num}"}
+
+
+@app.post('/recommendation')
+async def test_for_spotify():
+    res = dummy_APIcall()
+    item = Recommendation(**res)
+    album = item.tracks[0].album
+    return {
+        "name": album.name,
+        "uri": album.uri,
+        "image": [
+            {
+                "url": album.images[0].url,
+                "height": album.images[0].height,
+                "width": album.images[0].width
+            }
+        ]
+    }
