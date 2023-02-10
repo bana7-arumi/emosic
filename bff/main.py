@@ -18,6 +18,12 @@ class Item(BaseModel):
     num: int
 
 
+class EmotionText(BaseModel):
+    """感情分析に噛ませるためのテキスト
+    """
+    text: str
+
+
 schema = strawberry.Schema(Query)
 
 graphql_app = GraphQLRouter(schema)
@@ -32,7 +38,7 @@ async def declare_request_body(item: Item):
 
 
 @app.post('/recommendation')
-async def test_for_spotify():
+async def test_for_spotify(text: EmotionText):
     res = dummy_APIcall()
     item = Recommendation(**res)
     album = item.tracks[0].album
