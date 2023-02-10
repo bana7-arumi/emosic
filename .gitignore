@@ -1,3 +1,4 @@
 .DS_STORE
 **/emotional-analysis-api/
 bff/__pycache__
+bff/api_handler/__pycache__
