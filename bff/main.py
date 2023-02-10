@@ -2,6 +2,7 @@ import strawberry
 from fastapi import FastAPI
 from strawberry.fastapi import GraphQLRouter
 from pydantic import BaseModel
+import emo_api
 @strawberry.type
 class Query:
     @strawberry.field
@@ -10,7 +11,6 @@ class Query:
 
 class Item(BaseModel):
     text:str
-    num :int
 
 schema = strawberry.Schema(Query)
 
@@ -21,4 +21,4 @@ app.include_router(graphql_app, prefix="/graphql")
 
 @app.post('/post')
 async def declare_request_body(item: Item):
-    return {"test_message":f"text:{item.text},num:{item.num}"}
+    return emo_api.post(item.text)
