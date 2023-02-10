@@ -2,9 +2,9 @@ import strawberry
 from fastapi import FastAPI
 from strawberry.fastapi import GraphQLRouter
 from pydantic import BaseModel
+import emo_api
 from api_handler.recommendation import Recommendation
 from api_handler.spotify_interface import dummy_APIcall
-
 
 @strawberry.type
 class Query:
@@ -23,7 +23,6 @@ class EmotionText(BaseModel):
     """
     text: str
 
-
 schema = strawberry.Schema(Query)
 
 graphql_app = GraphQLRouter(schema)
@@ -34,8 +33,7 @@ app.include_router(graphql_app, prefix="/graphql")
 
 @app.post('/post')
 async def declare_request_body(item: Item):
-    return {"test_message": f"text:{item.text},num:{item.num}"}
-
+    return emo_api.post(item.text)
 
 @app.post('/recommendation')
 async def test_for_spotify(text: EmotionText):
