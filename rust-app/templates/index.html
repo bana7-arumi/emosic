@@ -49,6 +49,14 @@
         </form>
       </div>
     </section>
+    <a href="#" 
+      id="twitter-share" 
+      class="twitter-share-button" 
+      data-text="a" 
+      data-hashtags="emosic" 
+      data-lang="ja" 
+      data-show-count="false">Tweet</a>
+    <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
     <script
       src="https://code.jquery.com/jquery-3.6.3.min.js"
       integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU="
@@ -59,6 +67,11 @@
         text = document.getElementById("text").value;
         document.getElementById("submit-button").value = text;
       }
+      function shareText(text, music) {
+        url = "https://twitter.com/share?text=「" + text + "」なあなたにおすすめな曲は「" + music + "」です！%0D%0A";
+        document.getElementById("twitter-share").setAttribute("href", url);
+      }
+      shareText("あいうえお", "君が代");
     </script>
   </body>
 </html>
