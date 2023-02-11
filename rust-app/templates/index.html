@@ -60,10 +60,12 @@
 
     <section class="w-full">
       <div class="grid justify-center">
-        <div id="result-card" class="grid">{% include "result_card.html" %}</div>
+        <div id="result-card" class="grid">
+          {% include "result_card.html" %}
+        </div>
         <div class="grid grid-cols-2 m-6 text-center">
           <a
-            href="https://twitter.com/share?text=「{{emo_result}}」なあなたにおすすめな曲は「{{name}}」です！%0D%0A"
+            href="https://twitter.com/share?text=「{{emo_result}}」なあなたにおすすめな曲は「{{name}}」です！%0a %23技育CAMP %0a %23Emosic https://open.spotify.com/album/{{album_id}} %0D%0A"
             id="twitter-share"
             class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full"
             data-text="a"
