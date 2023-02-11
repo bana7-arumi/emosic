@@ -1,12 +1,10 @@
 <!DOCTYPE html>
 
-{%if emo_result == "positive"%}{%set a = "bg-gradient-to-t from-yellow-500
-via-yellow-200 to-white"%}{%set poem
+{%if emo_result == "positive"%}{%set a = "bg-gradient-to-b from-rose-700 via-pink-600 to-fuchsia-400"%}{%set poem
 ="あなたのポジティブな気持ちを音楽にするなら..."%} {%elif emo_result ==
-"negative"%}{%set a = "bg-gradient-to-t from-indigo-400 via-indigo-800
-to-black"%}{%set poem ="ネガティブなこの気持ちを音楽にするなら..."%} {%elif
+"negative"%}{%set a = "bg-gradient-to-b from-slate-800 via-blue-800 to-sky-500"%}{%set poem ="ネガティブなこの気持ちを音楽にするなら..."%} {%elif
 emo_result == "neutral"%}{%set poem ="日常と一緒に聴きたい音楽は..."%}{%set a =
-"bg-gradient-to-t from-green-600 via-green-400 to-white"%} {%else%} {%set a
+"bg-gradient-to-b from-emerald-300 via-teal-400 to-cyan-500"%} {%else%} {%set a
 ="_"%} {%endif%}
 
 <div
