@@ -1,13 +1,16 @@
-use actix_web::{get, post, web, HttpResponse, Responder, body};
+use actix_web::{body, get, post, web, HttpResponse, Responder};
 use reqwest;
 use serde::Deserialize;
+use serde_json::from_str;
 use serde_json::{self, Map};
-use tera::Tera;
 use tera::Context;
+use tera::Tera;
 
 #[get("/")]
 pub async fn hello(templates: web::Data<Tera>) -> impl Responder {
-    let view = templates.render("index.html", &tera::Context::new());
+    let mut ctx = Context::new();
+    ctx.insert("emo_result", &"null");
+    let view = templates.render("index.html", &ctx);
 
     match view {
         Ok(body) => HttpResponse::Ok().content_type("text/html").body(body),
@@ -21,7 +24,10 @@ struct FormText {
 }
 
 #[post("/")]
-pub async fn post_example(web::Form(form): web::Form<FormText>, templates: web::Data<Tera>) -> impl Responder {
+pub async fn post_example(
+    web::Form(form): web::Form<FormText>,
+    templates: web::Data<Tera>,
+) -> impl Responder {
     let json_string = format!("{{\"text\":\"{}\"}}", form.text);
     let json_item = serde_json::from_str(&json_string).unwrap();
 
@@ -37,10 +43,10 @@ pub async fn post_example(web::Form(form): web::Form<FormText>, templates: web::
                         Ok(body) => HttpResponse::Ok().content_type("text/html").body(body),
                         Err(e) => HttpResponse::InternalServerError().body(e.to_string()),
                     }
-                },
+                }
                 Err(e) => HttpResponse::InternalServerError().body(e.to_string()),
             }
-        },
+        }
         Err(e) => HttpResponse::InternalServerError().body(e.to_string()),
     }
 }

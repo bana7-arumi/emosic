@@ -1,7 +1,12 @@
 <!DOCTYPE html>
+{%if emo_result == "positive"%}{%set a = "bg-gradient-to-t from-yellow-500
+via-yellow-200 to-white h-96 p-12"%} {%elif emo_result == "negative"%}{%set a =
+"bg-gradient-to-t from-indigo-400 via-indigo-800 to-black"%} {%elif emo_result
+== "neutral"%}{%set a = "bg-gradient-to-t from-green-600 via-green-400
+to-white"%} {%else%} {%set a ="_"%} {%endif%}
 <a
   href="#"
-  class="block p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700"
+  class="block p-6 {{a}} border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700"
 >
   <div class="grid grid-cols-12">
     <div class="col-span-4">
