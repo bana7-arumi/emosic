@@ -40,14 +40,3 @@ pub async fn send_post_to_bff(json: serde_json::Value) -> reqwest::Result<String
         .await?;
     responce.text().await
 }
-async fn reqest_recommendation(text: &str) -> reqwest::Result<String> {
-    let json = serde_json::json!({ "text": text });
-
-    let client = reqwest::Client::new();
-    let responce = client
-        .post("http://bff:9000/recommendation")
-        .json(&json)
-        .send()
-        .await?;
-    responce.text().await
-}

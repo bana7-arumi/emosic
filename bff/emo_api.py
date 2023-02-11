@@ -1,7 +1,6 @@
 import requests
-import json
 
-def post(text: str) -> str:
+def post(text: str) -> float:
   host = "api"
   port = 8000
   uri = "inference"
@@ -15,4 +14,9 @@ def post(text: str) -> str:
     headers=headers,
     json=data
   )
-  return response.json()
+  emo = response.json()['emotion']
+  if emo == "positive":
+    return 1.0
+  elif emo == "negative":
+    return 0
+  return 0.5

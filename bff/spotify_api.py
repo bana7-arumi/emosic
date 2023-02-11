@@ -20,11 +20,11 @@ async def auth():
   )
   return response.json()['access_token']
 
-async def post(access_token: str):
+async def post(access_token: str, valence: float = 0.5):
   url = "https://api.spotify.com/v1/recommendations"
-  seed_artists="4NHQUGzhtTLFvgF5SZesLK"
-  seed_genres="classical,country"
-  seed_tracks="0c6xIDDpzE81m2q797ordA"
+  seed_artists=""
+  seed_genres="j-pop, anime"
+  seed_tracks=""
 
   headers = {
     'Authorization': f'Bearer {access_token}'
@@ -34,7 +34,8 @@ async def post(access_token: str):
     'seed_artists': seed_artists,
     'seed_genres': seed_genres,
     'seed_tracks': seed_tracks,
-    'limit': 1
+    'limit': 1,
+    'valence': valence
   }
 
   response = requests.get(

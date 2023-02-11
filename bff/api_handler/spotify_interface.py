@@ -5,8 +5,6 @@ https://developer.spotify.com/documentation/web-api/reference/#/operations/get-r
 """
 import json
 from fastapi.encoders import jsonable_encoder
-from fastapi.responses import JSONResponse
-import os
 from os import path
 
 
@@ -22,7 +20,6 @@ def dummy_APIcall():
         d = json.load(f)
     print(d)
     return jsonable_encoder(d)
-
 
 if __name__ == "__main__":
     dummy_APIcall()

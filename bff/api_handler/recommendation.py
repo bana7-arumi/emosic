@@ -4,91 +4,82 @@ Get Recommendationsが返すjsonに対応
 https://developer.spotify.com/documentation/web-api/reference/#/operations/get-recommendations
 """
 
-from typing import List, Dict, Union
+from typing import List, Dict, Union, Optional
 from pydantic import BaseModel
-
-from pydantic import BaseModel
-
 
 class Seed(BaseModel):
-    afterFilteringSize: int
-    afterRelinkingSize: int
-    href: str
-    id: str
-    initialPoolSize: int
-    type: str
-
+    afterFilteringSize: Optional[int]
+    afterRelinkingSize: Optional[int]
+    href: Optional[str]
+    id: Optional[str]
+    initialPoolSize: Optional[int]
+    type: Optional[str]
 
 class Images(BaseModel):
-    url: str
-    height: int
-    width: int
-
+    url: Optional[str]
+    height: Optional[int]
+    width: Optional[int]
 
 class Album(BaseModel):
-    album_type: str
-    total_tracks: int
-    available_markets: List[str]
-    external_urls: Dict[str, str]
-    href: str
-    id: str
-    images: List[Images]
-    name: str
-    release_date: str
-    release_date_precision: str
-    restrictions: Dict[str, str]
-    type: str
-    uri: str
-    copyrights: List[Dict[str, str]]
-    external_ids: Dict[str, str]
-    genres: List[str]
-    label: str
-    popularity: int
-    album_group: str
-    artists: List[Dict[str, Union[str, Dict[str, str]]]]
-
+    album_type: Optional[str]
+    total_tracks: Optional[int]
+    available_markets: Optional[List[str]]
+    external_urls: Optional[Dict[str, str]]
+    href: Optional[str]
+    id: Optional[str]
+    images: Optional[List[Images]]
+    name: Optional[str]
+    release_date: Optional[str]
+    release_date_precision: Optional[str]
+    restrictions: Optional[Dict[str, str]]
+    type: Optional[str]
+    uri: Optional[str]
+    copyrights: Optional[List[Dict[str, str]]]
+    external_ids: Optional[Dict[str, str]]
+    genres: Optional[List[str]]
+    label: Optional[str]
+    popularity: Optional[int]
+    album_group: Optional[str]
+    artists: Optional[List[Dict[str, Union[str, Dict[str, str]]]]]
 
 class Followers(BaseModel):
-    href: str
-    total: int
-
+    href: Optional[str]
+    total: Optional[int]
 
 class Artist(BaseModel):
-    external_urls: Dict[str, str]
-    followers: Followers
-    genres: List[str]
-    href: str
-    id: str
-    images: List[Images]
-    name: str
-    popularity: int
-    type: str
-    uri: str
-
+    external_urls: Optional[Dict[str, str]]
+    followers: Optional[Followers]
+    genres: Optional[List[str]]
+    href: Optional[str]
+    id: Optional[str]
+    images: Optional[List[Images]]
+    name: Optional[str]
+    popularity: Optional[int]
+    type: Optional[str]
+    uri: Optional[str]
 
 class Track(BaseModel):
-    album: Album
-    artists: List[Artist]
-    available_markets: List[str]
-    disc_number: int
-    duration_ms: int
-    explicit: bool
-    external_ids: Dict[str, str]
-    external_urls: Dict[str, str]
-    href: str
-    id: str
-    is_playable: bool
-    linked_from: Dict
-    restrictions: Dict[str, str]
-    name: str
-    popularity: int
-    preview_url: str
-    track_number: int
-    type: str
-    uri: str
-    is_local: bool
-
+    album: Optional[Album]
+    artists: Optional[List[Artist]]
+    available_markets: Optional[List[str]]
+    disc_number: Optional[int]
+    duration_ms: Optional[int]
+    explicit: Optional[bool]
+    external_ids: Optional[Dict[str, str]]
+    external_urls: Optional[Dict[str, str]]
+    href: Optional[str]
+    id: Optional[str]
+    is_playable: Optional[bool]
+    linked_from: Optional[Dict]
+    restrictions: Optional[Dict[str, str]]
+    name: Optional[str]
+    popularity: Optional[int]
+    preview_url: Optional[str]
+    track_number: Optional[int]
+    type: Optional[str]
+    uri: Optional[str]
+    is_local: Optional[bool]
 
 class Recommendation(BaseModel):
-    seeds: List[Seed]
-    tracks: List[Track]
+    seeds: Optional[List[Seed]]
+    tracks: Optional[List[Track]]

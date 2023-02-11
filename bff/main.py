@@ -4,7 +4,6 @@ from strawberry.fastapi import GraphQLRouter
 from pydantic import BaseModel
 import emo_api
 from api_handler.recommendation import Recommendation
-from api_handler.spotify_interface import dummy_APIcall
 import spotify_api
 
 
@@ -34,12 +33,9 @@ app.include_router(graphql_app, prefix="/graphql")
 
 @app.post('/post')
 async def declare_request_body(item: EmotionText):
+    valence: float = emo_api.post(item.text)
     access_token: str = await spotify_api.auth()
-    return await spotify_api.post(access_token=access_token)
-
-@app.post('/recommendation')
-async def test_for_spotify(text: EmotionText):
-    res = dummy_APIcall()
+    res = await spotify_api.post(access_token=access_token, valence=valence)
     item = Recommendation(**res)
     album = item.tracks[0].album
     return {
