@@ -2,3 +2,4 @@
 **/emotional-analysis-api/
 bff/__pycache__
 bff/api_handler/__pycache__
+**/*.env

@@ -29,9 +29,11 @@ services:
   bff:
     container_name: bff
     build:
-      context: . 
+      context: .
       dockerfile: ./docker/bff/Dockerfile.dev
     tty: true
+    env_file:
+      - ./docker/bff/api.env
     volumes:
       - ./bff:/app
     ports:

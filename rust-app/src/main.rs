@@ -2,6 +2,7 @@ use actix_web::web::Data;
 use actix_web::{App, HttpServer};
 use tera::Tera;
 mod server;
+
 #[actix_web::main]
 async fn main() -> std::io::Result<()> {
     HttpServer::new(|| {

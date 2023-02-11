@@ -5,6 +5,8 @@ from pydantic import BaseModel
 import emo_api
 from api_handler.recommendation import Recommendation
 from api_handler.spotify_interface import dummy_APIcall
+import spotify_api
+
 
 @strawberry.type
 class Query:
