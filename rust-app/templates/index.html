@@ -10,6 +10,7 @@
       href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap"
       rel="stylesheet"
     />
+    <script src="https://html2canvas.hertzen.com/dist/html2canvas.js"></script>
   </head>
   <body>
     <section class="bg-sky-500/50 h-96 p-12">
@@ -59,33 +60,15 @@
       data-show-count="false"
       >Tweet</a
     >
+    {%if name %} {% include "result_card.html" %} {% include
+    "spotify_embed.html"%} {%endif%}
     <script
       async
       src="https://platform.twitter.com/widgets.js"
       charset="utf-8"
     ></script>
     <script
-      src="https://code.jquery.com/jquery-3.6.3.min.js"
-      integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU="
-      crossorigin="anonymous"
+      src="./assets/js/index.js"
     ></script>
-    <script>
-      function change() {
-        text = document.getElementById("text").value;
-        document.getElementById("submit-button").value = text;
-      }
-      function shareText(text, music) {
-        url =
-          "https://twitter.com/share?text=「" +
-          text +
-          "」なあなたにおすすめな曲は「" +
-          music +
-          "」です！%0D%0A";
-        document.getElementById("twitter-share").setAttribute("href", url);
-      }
-      shareText("あいうえお", "君が代");
-    </script>
-    {%if name%} {% include "result_card.html" %} {% include
-    "spotify_embed.html"%} {%endif%}
   </body>
 </html>
