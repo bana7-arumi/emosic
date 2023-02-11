@@ -13,7 +13,7 @@
     <script src="https://html2canvas.hertzen.com/dist/html2canvas.js"></script>
     <script>
       function scrollToResult() {
-        el = document.getElementById("result-card");
+        el = document.getElementById("scrollTarget");
         el.scrollIntoView({ behavior: "smooth" });
       }
     </script>
@@ -58,7 +58,7 @@
     </section>
     {%if name %}
     <section class="w-full">
-      <h2 class="text-3xl font-bold tracking-tight text-center pt-2">
+      <h2 id="scrollTarget" class="text-3xl font-bold tracking-tight text-center pt-2">
         あなたの感情は
         <p class="text-6xl">{{emo_result}}</p>
         です
