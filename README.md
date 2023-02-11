@@ -6,6 +6,8 @@ emosicは感情と音楽を融合させたアプリケーションです
 
 本アプリケーションは2月11日~12日開催の[【オンライン開発合宿vol.11】「はじめてのハッカソン」](https://talent.supporterz.jp/events/e6d6ab3d-d0b6-4275-8380-12fb07c079b2/?utm_source=next&utm_medium=geekcamp)の成果物です
 
+![image](https://user-images.githubusercontent.com/73931800/218283606-49f31d71-1b59-4df9-9888-c1c2a2a1741a.png)
+
 # features
 
 - 複数のAPIから構成されたマイクロサービスである
