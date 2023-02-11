@@ -15,8 +15,12 @@ def post(text: str) -> float:
     json=data
   )
   emo = response.json()['emotion']
-  if emo == "positive":
+  return emo
+
+def to_valence(emotion):
+  if emotion == "positive":
     return 1.0
-  elif emo == "negative":
+  elif emotion == "negative":
     return 0
-  return 0.5
+  else:
+    return 0.5

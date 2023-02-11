@@ -33,19 +33,20 @@ app.include_router(graphql_app, prefix="/graphql")
 
 @app.post('/post')
 async def declare_request_body(item: EmotionText):
-    valence: float = emo_api.post(item.text)
+    emotion = emo_api.post(item.text)
+    valence: float = emo_api.to_valence(emotion)
     access_token: str = await spotify_api.auth()
     res = await spotify_api.post(access_token=access_token, valence=valence)
     item = Recommendation(**res)
     album = item.tracks[0].album
     return {
+        "emo_result": emotion,
+        "album_id": album.id,
         "name": album.name,
         "uri": album.uri,
-        "image": [
-            {
+        "image": {
                 "url": album.images[0].url,
                 "height": album.images[0].height,
                 "width": album.images[0].width
             }
-        ]
     }
