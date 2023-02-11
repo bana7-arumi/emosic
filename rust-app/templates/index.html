@@ -85,6 +85,7 @@
       }
       shareText("あいうえお", "君が代");
     </script>
-    {% include "result_card.html" %} {% include "spotify_embed.html" %}
+    {%if name%} {% include "result_card.html" %} {% include
+    "spotify_embed.html"%} {%endif%}
   </body>
 </html>
