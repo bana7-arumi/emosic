@@ -34,7 +34,8 @@ app.include_router(graphql_app, prefix="/graphql")
 
 @app.post('/post')
 async def declare_request_body(item: EmotionText):
-    return await spotify_api.auth()
+    access_token: str = await spotify_api.auth()
+    return await spotify_api.post(access_token=access_token)
 
 @app.post('/recommendation')
 async def test_for_spotify(text: EmotionText):
