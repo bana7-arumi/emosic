@@ -39,8 +39,12 @@ async def declare_request_body(item: EmotionText):
     res = await spotify_api.post(access_token=access_token, valence=valence)
     item = Recommendation(**res)
     album = item.tracks[0].album
+    artist_names = ""
+    for track in item.tracks:
+        artist_names = "".join(track.artists[0].name)
     return {
         "emo_result": emotion,
+        "artist_name": artist_names,
         "album_id": album.id,
         "name": album.name,
         "uri": album.uri,

@@ -19,7 +19,7 @@
     </script>
   </head>
   <body onload="scrollToResult();">
-    <section class="bg-sky-500/50 h-screen p-12">
+    <section class="bg-sky-500/50 h-96 p-12">
       <div class="grid text-left">
         <div class="grid-cols-12 max-w-md">
           <h2 class="text-6xl font-bold tracking-tight text-white p-2">
@@ -37,7 +37,7 @@
               class="shadow appearance-none border rounded w-full py-2 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
               id="text"
               type="text"
-              placeholder="ここに感情を入力してください"
+              placeholder="今のあなたの気持ちを教えてください"
               autocomplete="off"
               onchange="change()"
             />
@@ -56,12 +56,64 @@
         </form>
       </div>
     </section>
-    {%if name %} {% include "result_card.html" %} {% include
-    "spotify_embed.html"%} {%endif%}
+    {%if name %}
+
+    <section class="w-full">
+      <div class="grid justify-center">
+        <div id="result-card" class="grid">{% include "result_card.html" %}</div>
+        <div class="grid grid-cols-2 m-6 text-center">
+          <a
+            href="https://twitter.com/share?text=「{{emo_result}}」なあなたにおすすめな曲は「{{name}}」です！%0D%0A"
+            id="twitter-share"
+            class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full"
+            data-text="a"
+            data-hashtags="emosic"
+            data-lang="ja"
+            data-show-count="false"
+            >Twitterで共有</a
+          >
+          <a
+            id="img-download-button"
+            class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full"
+          >
+            画像ダウンロード
+          </a>
+        </div>
+        <div class="grid">{% include "spotify_embed.html"%}</div>
+      </div>
+    </section>
+    {%endif%}
     <script
       async
       src="https://platform.twitter.com/widgets.js"
       charset="utf-8"
     ></script>
+    <script>
+      function change() {
+        text = document.getElementById("text").value;
+        document.getElementById("submit-button").value = text;
+      }
+
+      function shareText(text, music) {
+        url =
+          "https://twitter.com/share?text=「" +
+          text +
+          "」なあなたにおすすめな曲は「" +
+          music +
+          "」です！%0D%0A";
+        document.getElementById("twitter-share").setAttribute("href", url);
+      }
+
+      html2canvas(document.getElementById("canvas"), {
+        proxy: true,
+        useCORS: true,
+      })
+        .then((canvas) => {
+          let element = document.getElementById("img-download-button");
+          element.href = canvas.toDataURL("image/png");
+          element.download = "canvas.png";
+        })
+        .catch((err) => {});
+    </script>
   </body>
 </html>
