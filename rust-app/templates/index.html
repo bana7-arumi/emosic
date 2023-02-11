@@ -11,9 +11,15 @@
       rel="stylesheet"
     />
     <script src="https://html2canvas.hertzen.com/dist/html2canvas.js"></script>
+    <script>
+      function scrollToResult() {
+        el = document.getElementById("result-card");
+        el.scrollIntoView({ behavior: "smooth" });
+      }
+    </script>
   </head>
-  <body>
-    <section class="bg-sky-500/50 h-96 p-12">
+  <body onload="scrollToResult();">
+    <section class="bg-sky-500/50 h-screen p-12">
       <div class="grid text-left">
         <div class="grid-cols-12 max-w-md">
           <h2 class="text-6xl font-bold tracking-tight text-white p-2">
@@ -50,25 +56,12 @@
         </form>
       </div>
     </section>
-    <a
-      href="#"
-      id="twitter-share"
-      class="twitter-share-button"
-      data-text="a"
-      data-hashtags="emosic"
-      data-lang="ja"
-      data-show-count="false"
-      >Tweet</a
-    >
     {%if name %} {% include "result_card.html" %} {% include
     "spotify_embed.html"%} {%endif%}
     <script
       async
       src="https://platform.twitter.com/widgets.js"
       charset="utf-8"
-    ></script>
-    <script
-      src="./assets/js/index.js"
     ></script>
   </body>
 </html>
