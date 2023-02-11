@@ -15,8 +15,12 @@
     <section class="bg-sky-500/50 h-96 p-12">
       <div class="grid text-left">
         <div class="grid-cols-12 max-w-md">
-          <h2 class="text-6xl font-bold tracking-tight text-white p-2">emosic</h2>
-          <p class="text-2xl text-white font-bold tracking-tight opacity-70 p-2 underline">
+          <h2 class="text-6xl font-bold tracking-tight text-white p-2">
+            emosic
+          </h2>
+          <p
+            class="text-2xl text-white font-bold tracking-tight opacity-70 p-2 underline"
+          >
             あなたの感情 音楽に変換します
           </p>
         </div>
@@ -45,14 +49,21 @@
         </form>
       </div>
     </section>
-    <a href="#" 
-      id="twitter-share" 
-      class="twitter-share-button" 
-      data-text="a" 
-      data-hashtags="emosic" 
-      data-lang="ja" 
-      data-show-count="false">Tweet</a>
-    <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+    <a
+      href="#"
+      id="twitter-share"
+      class="twitter-share-button"
+      data-text="a"
+      data-hashtags="emosic"
+      data-lang="ja"
+      data-show-count="false"
+      >Tweet</a
+    >
+    <script
+      async
+      src="https://platform.twitter.com/widgets.js"
+      charset="utf-8"
+    ></script>
     <script
       src="https://code.jquery.com/jquery-3.6.3.min.js"
       integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU="
@@ -64,11 +75,16 @@
         document.getElementById("submit-button").value = text;
       }
       function shareText(text, music) {
-        url = "https://twitter.com/share?text=「" + text + "」なあなたにおすすめな曲は「" + music + "」です！%0D%0A";
+        url =
+          "https://twitter.com/share?text=「" +
+          text +
+          "」なあなたにおすすめな曲は「" +
+          music +
+          "」です！%0D%0A";
         document.getElementById("twitter-share").setAttribute("href", url);
       }
       shareText("あいうえお", "君が代");
     </script>
-    {% include "spotify_embed.html" %}
+    {% include "result_card.html" %} {% include "spotify_embed.html" %}
   </body>
 </html>
