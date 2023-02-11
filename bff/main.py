@@ -32,10 +32,9 @@ graphql_app = GraphQLRouter(schema)
 app = FastAPI()
 app.include_router(graphql_app, prefix="/graphql")
 
-
 @app.post('/post')
-async def declare_request_body(item: Item):
-    return emo_api.post(item.text)
+async def declare_request_body(item: EmotionText):
+    return await spotify_api.auth()
 
 @app.post('/recommendation')
 async def test_for_spotify(text: EmotionText):
