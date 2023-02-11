@@ -16,15 +16,7 @@ class Query:
     @strawberry.field
     def hello(self) -> str:
         return "Hello World"
-schema = strawberry.Schema(Query)
 
-graphql_app = GraphQLRouter(schema)
-
-app = FastAPI()
-app.include_router(graphql_app, prefix="/graphql")
-
-
-    
 @strawberry.type
 class Mutation:
     @strawberry.mutation
