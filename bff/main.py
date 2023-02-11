@@ -43,7 +43,7 @@ async def declare_request_body(item: EmotionText):
     for track in item.tracks:
         artist_names = "".join(track.artists[0].name)
     # valenceがnegative(0.0)ならpositiveでもapiを叩く
-    if emotion == 0.0:
+    if valence == 0.0:
         positive_res = await spotify_api.post(access_token=access_token, valence=1.0)
         positive_item = Recommendation(**positive_res)
         positive_album = positive_item.tracks[0].album

@@ -9,7 +9,6 @@ emo_result == "neutral"%}{%set poem ="日常と一緒に聴きたい音楽は...
 
 <div
   id="canvas"
-  href="#"
   class="block p-6 m-6 max-w-md {{a}} border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700"
 >
   <h5 class="mb-2 ml-2 text-xl font-bold tracking-tight text-white text-center">
@@ -20,7 +19,7 @@ emo_result == "neutral"%}{%set poem ="日常と一緒に聴きたい音楽は...
       <image class="flex items-center" src="{{image.url}}"></image>
     </div>
     <div
-      class="grid col-span-8 container text-white px-2 opacity-70 content-center"
+      class="grid col-span-8 container text-white px-2 opacity-70 content-center text-ellipsis overflow-hidden"
     >
       <h5 class="text-2xl text-center font-extrabold">{{name}}</h5>
       <h5 class="text-1xl text-center font-extrabold opacity-40">
@@ -28,4 +27,5 @@ emo_result == "neutral"%}{%set poem ="日常と一緒に聴きたい音楽は...
       </h5>
     </div>
   </div>
+  <h5 class="text-1xl text-right font-extrabold opacity-30">@Emosic</h5>
 </div>

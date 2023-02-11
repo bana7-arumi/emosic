@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+{%set a = "bg-gradient-to-b from-rose-700 via-pink-600 to-fuchsia-400"%}
+<a
+  id="canvas"
+  href="https://open.spotify.com/album/{{positive.album_id}}"
+  target="_blank"
+  rel="noopener noreferrer"
+  class="p-6 m-6 max-w-md {{a}} border border-gray-200 rounded-lg hover:from-rose-500"
+>
+  <h5 class="mb-2 ml-2 text-xl font-bold tracking-tight text-white text-center">
+    この曲を聴いて元気になってね！
+  </h5>
+  <div class="grid grid-cols-12">
+    <div class="col-span-4">
+      <image class="flex items-center" src="{{positive.image.url}}"></image>
+    </div>
+    <div
+      class="grid col-span-8 container text-white px-2 opacity-70 content-center text-ellipsis overflow-hidden"
+    >
+      <h5 class="text-2xl text-center font-extrabold">{{positive.name}}</h5>
+      <h5 class="text-1xl text-center font-extrabold opacity-40">
+        {{positive.artist_name}}
+      </h5>
+    </div>
+  </div>
+  <h5 class="text-1xl sm:pt-12 text-center font-extrabold opacity-40 text-white">※クリックするとspotifyに遷移します</h5>
+</a>

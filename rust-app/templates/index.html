@@ -60,6 +60,34 @@
 
     <section class="w-full">
       <div class="grid justify-center">
+        {% if positive.name %}
+        <div class="grid sm:grid-cols-2">
+          <div>
+            <div id="result-card" class="grid">
+              {% include "result_card.html" %}
+            </div>
+            <div class="grid grid-cols-2 m-6 text-center">
+              <a
+                href="https://twitter.com/share?text=「{{emo_result}}」なあなたにおすすめな曲は「{{name}}」です！%0a %23技育CAMP %0a %23Emosic https://open.spotify.com/album/{{album_id}}"
+                id="twitter-share"
+                class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full"
+                data-text="a"
+                data-hashtags="emosic"
+                data-lang="ja"
+                data-show-count="false"
+                >Twitterで共有</a
+              >
+              <a
+                id="img-download-button"
+                class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full"
+              >
+                画像ダウンロード
+              </a>
+            </div>
+          </div>
+          <div class="grid">{% include "result_cheer_card.html" %}</div>
+        </div>
+        {% else %}
         <div id="result-card" class="grid">
           {% include "result_card.html" %}
         </div>
@@ -81,6 +109,7 @@
             画像ダウンロード
           </a>
         </div>
+        {% endif %}
         <div class="grid">{% include "spotify_embed.html"%}</div>
       </div>
     </section>
