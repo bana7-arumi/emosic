@@ -1,7 +1,8 @@
 use actix_web::{body, get, post, web, HttpResponse, Responder};
 use reqwest;
 use serde::Deserialize;
-use serde_json::from_str;
+use serde_json::{from_str, Value};
+
 use serde_json::{self, Map};
 use tera::Context;
 use tera::Tera;
@@ -24,17 +25,23 @@ struct FormText {
 }
 
 #[post("/")]
-pub async fn post_example(
-    web::Form(form): web::Form<FormText>,
-    templates: web::Data<Tera>,
-) -> impl Responder {
-    let json_string = format!("{{\"text\":\"{}\"}}", form.text);
+pub async fn post_example(web::Form(form): web::Form<FormText>, templates: web::Data<Tera>) -> impl Responder {
+    let json_1 = "{\"query\":\"mutation{declareRequestBody(text:".to_string();
+    let text = format!("\\\"{}\\\"", &form.text);
+    let json_2= ")}\"}".to_string();
+
+    let json_string = json_1 + &text + &json_2;
+
     let json_item = serde_json::from_str(&json_string).unwrap();
 
     let res = send_post_to_bff(json_item);
     match res.await {
         Ok(res) => {
-            let res_json = serde_json::from_str(&res).unwrap();
+            let graphql_json:_ = serde_json::from_str::<Value>(&res).unwrap();
+            let tmp = graphql_json["data"].as_object().unwrap().get("declareRequestBody").unwrap().to_string();
+            let res_json= serde_json::from_str(&tmp).unwrap();
+
+
             let ctx = Context::from_value(res_json);
             match ctx {
                 Ok(ctx) => {
@@ -54,8 +61,8 @@ pub async fn post_example(
 pub async fn send_post_to_bff(json: serde_json::Value) -> reqwest::Result<String> {
     let client = reqwest::Client::new();
     let responce = client
-        .post("http://bff:9000/post")
-        .json(&json) //ひどい実装ですみませんが動作確認なので許してほしいです
+        .post("http://bff:9000/graphql")
+        .json(&json)
         .send()
         .await?;
     responce.text().await
