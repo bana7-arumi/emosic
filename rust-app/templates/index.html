@@ -12,33 +12,29 @@
     />
   </head>
   <body>
-    <section class="bg-sky-500/50 h-96 px-8">
-      <div class="grid">
-        <div class="grid-col-12 mx-auto max-w-md text-center h-48">
-          <h2 class="text-6xl font-bold tracking-tight text-white">emosic</h2>
-          <p class="text-2xl text-white font-bold tracking-tight opacity-70">
+    <section class="bg-sky-500/50 h-96 p-12">
+      <div class="grid text-left">
+        <div class="grid-cols-12 max-w-md">
+          <h2 class="text-6xl font-bold tracking-tight text-white p-2">emosic</h2>
+          <p class="text-2xl text-white font-bold tracking-tight opacity-70 p-2 underline">
             あなたの感情 音楽に変換します
           </p>
         </div>
-        <div class="grid-col-12 mx-auto max-w-md text-center h-12">
-          <h2 class="text-2xl font-bold tracking-tight text-white">
-            今のあなたの感情を教えてください
-          </h2>
-        </div>
-        <form method="POST">
-          <div class="grid-cols-12 text-center h-12">
+        <form method="POST" class="my-12 grid grid-cols-3 gap-4">
+          <div class="col-span-2">
             <input
               class="shadow appearance-none border rounded w-full py-2 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
               id="text"
               type="text"
+              placeholder="ここに感情を入力してください"
               autocomplete="off"
               onchange="change()"
             />
           </div>
-          <div class="grid-cols-4 text-center">
+          <div class="text-center">
             <button
               id="submit-button"
-              class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+              class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full"
               name="text"
               value=""
               type="submit"
