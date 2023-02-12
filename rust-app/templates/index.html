@@ -56,66 +56,7 @@
         </form>
       </div>
     </section>
-    {%if name %}
-    <section class="w-full">
-      <h2 id="scrollTarget" class="text-3xl font-bold tracking-tight text-center pt-2">
-        あなたの感情は
-        <p class="text-6xl">{{emo_result}}</p>
-        です
-      </h2>
-      <div class="grid justify-center">
-        {% if positive.name %}
-        <div class="grid sm:grid-cols-2">
-          <div id="result-card" class="grid">
-            {% include "result_card.html" %}
-          </div>
-          <div class="grid">{% include "result_cheer_card.html" %}</div>
-        </div>
-        <div class="grid grid-cols-2 m-6 text-center justify-items-center">
-          <a
-            href="https://twitter.com/share?text=「{{emo_result}}」なあなたにおすすめな曲は「{{name}}」です！%0a %23技育CAMP %0a %23Emosic https://open.spotify.com/album/{{album_id}}"
-            id="twitter-share"
-            class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-11/12"
-            data-text="a"
-            data-hashtags="emosic"
-            data-lang="ja"
-            data-show-count="false"
-            >Twitterで共有</a
-          >
-          <a
-            id="img-download-button"
-            class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-11/12"
-          >
-            画像ダウンロード
-          </a>
-        </div>
-        {% else %}
-        <div id="result-card" class="grid">
-          {% include "result_card.html" %}
-        </div>
-        <div class="grid grid-cols-2 m-6 text-center justify-items-center">
-          <a
-            href="https://twitter.com/share?text=「{{emo_result}}」なあなたにおすすめな曲は「{{name}}」です！%0a %23技育CAMP %0a %23Emosic https://open.spotify.com/album/{{album_id}}"
-            id="twitter-share"
-            class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-11/12"
-            data-text="a"
-            data-hashtags="emosic"
-            data-lang="ja"
-            data-show-count="false"
-            >Twitterで共有</a
-          >
-          <a
-            id="img-download-button"
-            class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-11/12"
-          >
-            画像ダウンロード
-          </a>
-        </div>
-        {% endif %}
-        <div class="grid justify-items-center">{% include "spotify_embed.html"%}</div>
-      </div>
-    </section>
-    {%endif%}
+    {%if name %} {%include "result_section.html"%} {%endif%}
     <script
       async
       src="https://platform.twitter.com/widgets.js"
