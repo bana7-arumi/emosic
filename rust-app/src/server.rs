@@ -1,14 +1,12 @@
-use actix_web::{body, get, post, web, HttpResponse, Responder};
+use actix_web::web::Data;
+use actix_web::{get, post, web, HttpResponse, Responder};
 use reqwest;
 use serde::Deserialize;
-use serde_json::{from_str, Value};
-
-use serde_json::{self, Map};
-use tera::Context;
-use tera::Tera;
+use serde_json::Value;
+use tera::{Context, Tera};
 
 #[get("/")]
-pub async fn hello(templates: web::Data<Tera>) -> impl Responder {
+pub async fn hello(templates: Data<Tera>) -> impl Responder {
     let mut ctx = Context::new();
     ctx.insert("emo_result", &"null");
     let view = templates.render("index.html", &ctx);
@@ -20,12 +18,12 @@ pub async fn hello(templates: web::Data<Tera>) -> impl Responder {
 }
 
 #[derive(Deserialize)]
-struct FormText {
+pub struct FormText {
     text: String,
 }
 
 #[post("/")]
-pub async fn post_example(web::Form(form): web::Form<FormText>, templates: web::Data<Tera>) -> impl Responder {
+pub async fn post_example(web::Form(form): web::Form<FormText>, templates: Data<Tera>) -> impl Responder {
     let json_1 = "{\"query\":\"mutation{declareRequestBody(text:".to_string();
     let text = format!("\\\"{}\\\"", &form.text);
     let json_2= ")}\"}".to_string();
