@@ -1,0 +1,32 @@
+version: "3"
+services:
+  rust-app:
+    image: rust:1.67
+    expose:
+      - 8080
+    tty: true
+    command: cargo run
+  nginx:
+    image: nginx:latest
+    container_name: nginx
+    ports:
+      - 80:80
+      - 443:443
+    tty: true
+    volumes:
+      - ./docker/nginx/nginx.conf:/etc/nginx/nginx.conf
+    depends_on:
+      - rust-app
+  bff:
+    container_name: bff
+    build:
+      context: .
+      dockerfile: ./docker/bff/Dockerfile.dev
+    tty: true
+    env_file:
+      - ./docker/bff/api.env
+    volumes:
+      - ./bff:/home/myuser/app
+    ports:
+      - "9000:9000"
+    command: uvicorn main:app --reload --host 0.0.0.0 --port 9000
