@@ -5,6 +5,9 @@ services:
     expose:
       - 8080
     tty: true
+    volumes:
+      - ./rust-app:/app
+    working_dir: /app
     command: cargo run
   nginx:
     image: nginx:latest
