@@ -24,7 +24,7 @@ services:
     container_name: bff
     build:
       context: .
-      dockerfile: ./docker/bff/Dockerfile.dev
+      dockerfile: ./docker/bff/Dockerfile.prod
     tty: true
     env_file:
       - ./docker/bff/api.env
