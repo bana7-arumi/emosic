@@ -18,6 +18,8 @@ services:
     tty: true
     volumes:
       - ./docker/nginx/nginx.conf:/etc/nginx/nginx.conf
+      - ./docker/nginx/letsencrypt:/etc/letsencrypt
+      - ./docker/nginx/html:/var/www/html
     depends_on:
       - rust-app
   bff:
@@ -33,3 +35,9 @@ services:
     ports:
       - "9000:9000"
     command: uvicorn main:app --reload --host 0.0.0.0 --port 9000
+  certbot:
+    image: certbot/certbot:v1.32.2
+    volumes:
+      - ./docker/nginx/letsencrypt:/etc/letsencrypt
+      - ./docker/nginx/html:/var/www/html
+    command: --version
