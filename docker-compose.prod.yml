@@ -17,7 +17,7 @@ services:
       - 443:443
     tty: true
     volumes:
-      - ./docker/nginx/nginx.conf:/etc/nginx/nginx.conf
+      - ./docker/nginx/prod/nginx.conf:/etc/nginx/nginx.conf
       - ./docker/nginx/letsencrypt:/etc/letsencrypt
       - ./docker/nginx/html:/var/www/html
     depends_on:
@@ -40,4 +40,3 @@ services:
     volumes:
       - ./docker/nginx/letsencrypt:/etc/letsencrypt
       - ./docker/nginx/html:/var/www/html
-    command: --version

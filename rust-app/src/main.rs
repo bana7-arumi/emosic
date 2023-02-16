@@ -9,8 +9,8 @@ async fn main() -> std::io::Result<()> {
         let templates = Tera::new("templates/**/*").unwrap();
         App::new()
             .app_data(Data::new(templates))
-            .service(server::hello)
-            .service(server::post_example)
+            .service(server::index)
+            .service(server::get_album)
     })
     .bind(("rust-app", 8080))?
     .run()

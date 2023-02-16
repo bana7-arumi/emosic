@@ -13,8 +13,9 @@
     <script src="https://html2canvas.hertzen.com/dist/html2canvas.js"></script>
     <script>
       function scrollToResult() {
-        el = document.getElementById("scrollTarget");
-        el.scrollIntoView({ behavior: "smooth" });
+        if ((el = document.getElementById("scrollTarget")) != null) {
+          el.scrollIntoView({ behavior: "smooth" });
+        }
       }
     </script>
   </head>

@@ -11,6 +11,8 @@ services:
     tty: true
     volumes:
       - ./rust-app:/app
+      - cargo-cache:/usr/local/cargo/registry
+      - target-cache:/app/target
     environment:
       - RUSTC_WRAPPER=/usr/local/cargo/bin/sccache
       - RUST_BACKTRACE=1
@@ -23,7 +25,7 @@ services:
       - 80:80
     tty: true
     volumes:
-      - ./docker/nginx/nginx.conf:/etc/nginx/nginx.conf
+      - ./docker/nginx/dev/nginx.conf:/etc/nginx/nginx.conf
     depends_on:
       - rust-app
   bff:
@@ -39,3 +41,7 @@ services:
     ports:
       - "9000:9000"
     command: uvicorn main:app --reload --host 0.0.0.0 --port 9000
+
+volumes:
+  target-cache:
+  cargo-cache:

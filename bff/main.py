@@ -43,23 +43,13 @@ class Mutation:
                 "artist_name": artist_names,
                 "album_id": album.id,
                 "name": album.name,
-                "uri": album.uri,
-                "image": {
-                        "url": album.images[0].url,
-                        "height": album.images[0].height,
-                        "width": album.images[0].width
-                    },
+                "image_url": album.images[0].url,
                 "positive": {
                     "emo_result": emotion,
                     "artist_name": positive_artist_names,
                     "album_id": positive_album.id,
                     "name": positive_album.name,
-                    "uri": positive_album.uri,
-                    "image": {
-                            "url": positive_album.images[0].url,
-                            "height": positive_album.images[0].height,
-                            "width": positive_album.images[0].width
-                        }
+                    "image_url": positive_album.images[0].url,
                 }
             }
         return {
@@ -67,13 +57,8 @@ class Mutation:
             "artist_name": artist_names,
             "album_id": album.id,
             "name": album.name,
-            "uri": album.uri,
-            "image": {
-                    "url": album.images[0].url,
-                    "height": album.images[0].height,
-                    "width": album.images[0].width
-                }
-            }
+            "image_url": album.images[0].url
+        }
 
 schema = strawberry.Schema(Query, Mutation)
 

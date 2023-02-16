@@ -1,4 +1,6 @@
 import requests
+import math
+import random
 
 def post(text: str) -> float:
   host = "api"
@@ -18,9 +20,13 @@ def post(text: str) -> float:
   return emo
 
 def to_valence(emotion):
+  truncation = 100
   if emotion == "positive":
-    return 1.0
+    # 0.7 < x <= 1.0
+    return math.floor(random.uniform(0.71, 1.0) * truncation) / truncation
   elif emotion == "negative":
-    return 0
+    # 0.0 <= x < 0.3
+    return math.floor(random.uniform(0.0, 2.9) * truncation) / truncation
   else:
-    return 0.5
+    # 0.3 <= x <= 0.7
+    return math.floor(random.uniform(0.3, 0.7) * truncation) / truncation
