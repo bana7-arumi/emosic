@@ -39,7 +39,6 @@ services:
       - ./docker/nginx/prod/html:/var/www/html
     depends_on:
       - rust-app
-    command: "/bin/sh -c 'while :; do sleep 36h & wait $${!}; nginx -s reload; done & nginx -g \"daemon off;\"'"
   certbot:
     container_name: certbot
     image: certbot/certbot:amd64-latest
@@ -48,7 +47,6 @@ services:
       - ./docker/nginx/prod/html:/var/www/html
       - ./docker/nginx/prod/letsencrypt:/etc/letsencrypt
       - ./docker/nginx/prod/log_letsencrypt:/var/log/letsencrypt
-    entrypoint: "/bin/sh -c 'trap exit TERM; while :; do certbot renew; sleep 12h & wait $${!}; done;'"
     restart: always
 
 networks:
