@@ -42,7 +42,7 @@ services:
     command: "/bin/sh -c 'while :; do sleep 36h & wait $${!}; nginx -s reload; done & nginx -g \"daemon off;\"'"
   certbot:
     container_name: certbot
-    image: certbot/certbot:arm64v8-latest
+    image: certbot/certbot:amd64-latest
     platform: linux/amd64
     volumes:
       - ./docker/nginx/prod/html:/usr/share/nginx/html
