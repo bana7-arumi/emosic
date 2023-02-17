@@ -9,20 +9,6 @@ services:
       - ./rust-app:/app
     working_dir: /app
     command: cargo run
-  nginx:
-    container_name: nginx
-    build:
-      context: .
-      dockerfile: ./docker/nginx/prod/Dockerfile
-    ports:
-      - 80:80
-      - 443:443
-    tty: true
-    volumes:
-      - ./docker/nginx/prod/nginx.conf:/etc/nginx/nginx.conf
-      - ./docker/nginx/prod/letsencrypt:/etc/letsencrypt
-    depends_on:
-      - rust-app
   bff:
     container_name: bff
     build:
@@ -36,3 +22,29 @@ services:
     expose:
       - 9000
     command: uvicorn main:app --reload --host 0.0.0.0 --port 9000
+  nginx:
+    container_name: nginx
+    image: nginx
+    ports:
+      - 80:80
+      - 443:443
+    tty: true
+    environment:
+      - TZ=Asia/Tokyo
+    volumes:
+      - ./docker/nginx/prod/nginx.conf:/etc/nginx/nginx.conf
+      - ./docker/nginx/prod/letsencrypt:/etc/letsencrypt
+      - ./docker/nginx/prod/log:/var/log/nginx
+      - ./docker/nginx/prod/letsencrypt:/etc/letsencrypt
+    depends_on:
+      - rust-app
+    command: "/bin/sh -c 'while :; do sleep 36h & wait $${!}; nginx -s reload; done & nginx -g \"daemon off;\"'"
+  certbot:
+    container_name: certbot
+    image: certbot/certbot:arm64v8-latest
+    volumes:
+      - ./docker/nginx/prod/html:/usr/share/nginx/html
+      - ./docker/nginx/prod/letsencrypt:/etc/letsencrypt
+      - ./docker/nginx/prod/log_letsencrypt:/var/log/letsencrypt
+    entrypoint: "/bin/sh -c 'trap exit TERM; while :; do certbot renew; sleep 12h & wait $${!}; done;'"
+    restart: always
