@@ -5,3 +5,4 @@ bff/api_handler/__pycache__
 **/*.env
 docker/nginx/html
 docker/nginx/letsencrypt
+docker/nginx/prod
