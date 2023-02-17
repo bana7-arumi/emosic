@@ -42,6 +42,11 @@ services:
       - 9000
     command: uvicorn main:app --reload --host 0.0.0.0 --port 9000
 
+networks:
+  default:
+    name: emosic-network
+    driver: bridge
+
 volumes:
   target-cache:
   cargo-cache:

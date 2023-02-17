@@ -49,6 +49,11 @@ services:
     entrypoint: "/bin/sh -c 'trap exit TERM; while :; do certbot renew; sleep 12h & wait $${!}; done;'"
     restart: always
 
+networks:
+  default:
+    name: emosic-network
+    driver: bridge
+
 volumes:
   target-cache:
   cargo-cache:
