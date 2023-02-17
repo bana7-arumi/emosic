@@ -32,7 +32,7 @@ services:
     environment:
       - TZ=Asia/Tokyo
     volumes:
-      - ./docker/nginx/prod/nginx.conf:/etc/nginx/nginx.conf
+      - ./docker/nginx/prod/default.conf:/etc/nginx/default.conf
       - ./docker/nginx/prod/letsencrypt:/etc/letsencrypt
       - ./docker/nginx/prod/log:/var/log/nginx
       - ./docker/nginx/prod/html:/usr/share/nginx/html

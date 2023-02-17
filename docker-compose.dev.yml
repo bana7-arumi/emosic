@@ -25,7 +25,7 @@ services:
       - 80:80
     tty: true
     volumes:
-      - ./docker/nginx/dev/nginx.conf:/etc/nginx/nginx.conf
+      - ./docker/nginx/dev/default.conf:/etc/nginx/default.conf
     depends_on:
       - rust-app
   bff:
