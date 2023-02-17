@@ -25,6 +25,7 @@ services:
   nginx:
     container_name: nginx
     image: nginx
+    platform: linux/amd64
     ports:
       - 80:80
       - 443:443
@@ -42,6 +43,7 @@ services:
   certbot:
     container_name: certbot
     image: certbot/certbot:arm64v8-latest
+    platform: linux/amd64
     volumes:
       - ./docker/nginx/prod/html:/usr/share/nginx/html
       - ./docker/nginx/prod/letsencrypt:/etc/letsencrypt
